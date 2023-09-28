@@ -1,0 +1,48 @@
+INPUT NYO ITO SA DATABASE NYO INSERT LAHAT UNG IBA BAKA HINDI GUMANA 
+
+//////// For Seeding \\\\\\\\
+//Install this first, u only need to do this once
+// composer dump-autoload
+
+// Then run in command line the code below for seeding:
+// php artisan DB:seed
+
+//brgy_officals
+INSERT INTO `brgy_officials`( `name`, `position`, `oficial Committe`, `Year of Service`) VALUES ('Gian Mediavillo','Captain','12/12/12','5');
+INSERT INTO `brgy_officials`( `name`, `position`, `oficial Committe`, `Year of Service`) VALUES ('Rojhon Benueventura','Basurero','12/12/12','5');
+
+//area_setting
+INSERT INTO `area_settings`( `area`, `population`) VALUES ('gitna',2);
+INSERT INTO `area_settings`( `area`, `population`) VALUES ('dulo',1)
+
+//account sample
+
+INSERT INTO `accounts`( `first_name`, `last_name`, `username`, `email`, `password`, `remember_token`) VALUES ('Gian','Mediavillo','KILLME','nanaymo@gmail.com','jasdahsudaiusda=xx','tokentokentoken');
+INSERT INTO `sessions`(`user_id`, `username`,`created_at`) VALUES ((select `account_id` from `accounts` where `account_id` = 1 ),'Gian','2000-12-12 12:12:12')
+
+INSERT INTO `sessions`(`user_id`, `username`,`created_at`) VALUES ((select `account_id` from `accounts` where `account_id` = 1 ),'Gian','2000-12-12 12:12:12')
+//resident sample
+
+INSERT INTO `resident_infos`( `lastname`, `firstname`, `middlename`, `alias`, `birthday`, `age`, `gender`, `civilstatus`, `voterstatus`, `birth_of_place`,`citizenship`,`telephone_no`,`area`) VALUES ('Tohka','Shiela','Manoy','walachuchi','12/12/12',12,'Female','Single','Yes','Morong','Filipino',1,'dulo');
+INSERT INTO `resident_infos`( `lastname`, `firstname`, `middlename`, `alias`, `birthday`, `age`, `gender`, `civilstatus`, `voterstatus`, `birth_of_place`,`citizenship`,`telephone_no`,`area`) VALUES ('wawa','awaw','Manoy','walachuchi','12/12/12',12,'Female','Single','Yes','Morong','Filipino',1,'gitna');
+INSERT INTO `resident_infos`( `lastname`, `firstname`, `middlename`, `alias`, `birthday`, `age`, `gender`, `civilstatus`, `voterstatus`, `birth_of_place`,`citizenship`,`telephone_no`,`area`) VALUES ('wwwwwwww','wwwwwwww','Manoy','walachuchi','12/12/12',12,'Female','Single','Yes','Morong','Filipino',1,'gitna');
+
+
+//blotter & schedule
+
+//schedule tab
+INSERT INTO `blotters`( `incident_type`, `status`, `schedule`, `schedule_date`, `date_reported`,`time_reported` ,`date_incident`,`time_incident`, `incident_location`, `incident_narrative`, `created_at`) VALUES 		('Violence','Ongoing','Schedule','21/12/14','12:00:00','12/12/12','12/12/12',' 12:00:00','Gitna','pinatay ni gian si rojhon','12/12/12 12:00:00')
+//unschedule tab // the schedule_date is null 
+INSERT INTO `blotters`( `incident_type`, `status`, `schedule`, `date_reported`,`time_reported` ,`date_incident`,`time_incident`, `incident_location`, `incident_narrative`, `created_at`) VALUES ('Violence','Ongoing','Unschedule','12:00:00','12/12/12','12/12/12',' 12:00:00','Gitna','pinatay ni gian si rojhon','12/12/12 12:00:00')
+
+//rename the schedule to our current time
+INSERT INTO `blotters`( `incident_type`, `status`, `schedule`, `schedule_date`, `date_reported`,`time_reported` ,`date_incident`,`time_incident`, `incident_location`, `incident_narrative`, `created_at`) VALUES ('Violence','Ongoing','Settled','21/12/14','12:00:00','12/12/12','12/12/12',' 12:00:00','Gitna','pinatay ni gian si rojhon','12/12/12 12:00:00')
+// settled rename the status and scheduke
+INSERT INTO `blotters`( `incident_type`, `status`, `schedule`, `schedule_date`, `date_reported`,`time_reported` ,`date_incident`,`time_incident`, `incident_location`, `incident_narrative`, `created_at`) VALUES ('Violence','Settled','Settled','21/12/14','12:00:00','12/12/12','12/12/12',' 12:00:00','Gitna','pinatay ni gian si rojhon','12/12/12 12:00:00')
+//PERSON INVOLVE RESIDENT AND BLOTTER MUST NOT BE NULL
+
+INSERT INTO `person_involves`( `blotter_id`, `resident_id`, `person_involve`) VALUES ((SELECT `blotter_id` FROM `blotters` where `blotter_id` = 1),(SELECT `resident_id` FROM `resident_infos` WHERE `resident_id` = 1),'WALA');
+
+
+
+
